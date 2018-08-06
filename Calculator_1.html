@@ -6,29 +6,29 @@
 <form class="calcForm" name="calculator">
     <input type="text" name="display" id="display" disabled>
     <div class="calcRow">
-        <input type="button" name="one" value="1" onclick="numInput(1)">
-        <input type="button" name="two" value="2" onclick="numInput(2)">
-        <input type="button" name="three" value="3" onclick="numInput(3)">
+        <input type="button" class="digit" name="one" value="1">
+        <input type="button" class="digit" name="two" value="2">
+        <input type="button" class="digit" name="three" value="3">
         <!--<input type="button" class="operator" name="add" value="+" onclick="setOperation('add')">-->
         <input type="button" class="operator" name="add" value="+">
     </div>
     <div class="calcRow">
-        <input type="button" name="four" value="4" onclick="numInput(4)">
-        <input type="button" name="five" value="5" onclick="numInput(5)">
-        <input type="button" name="six" value="6" onclick="numInput(6)">
-        <input type="button" class="operator" name="substract" value="-" onclick="setOperation('substract')">
+        <input type="button" class="digit" name="four" value="4">
+        <input type="button" class="digit" name="five" value="5">
+        <input type="button" class="digit" name="six" value="6">
+        <input type="button" class="operator" name="subtract" value="-">
     </div>
     <div class="calcRow">
-        <input type="button" name="seven" value="7" onclick="numInput(7)">
-        <input type="button" name="eight" value="8" onclick="numInput(8)">
-        <input type="button" name="nine" value="9" onclick="numInput(9)">
-        <input type="button" class="operator" name="multiply" value="x" onclick="setOperation('multiply')">
+        <input type="button" class="digit" name="seven" value="7">
+        <input type="button" class="digit" name="eight" value="8">
+        <input type="button" class="digit" name="nine" value="9">
+        <input type="button" class="operator" name="multiply" value="x">
     </div>
     <div class="calcRow">
-        <input type="button" id="clear" name="clear" value="c" onclick="clearDisplay()">
-        <input type="button" name="zero" value="0" onclick="numInput(0)">
-        <input type="button" name="calculate" value="=" onclick="calculateFormula()">
-        <input type="button" class="operator" name="divide" value="/" onclick="setOperation('divide')"></td>
+        <input type="button" id="clear" name="clear" value="c">
+        <input type="button" class="digit" name="zero" value="0">
+        <input type="button" name="calculate" value="=">
+        <input type="button" class="operator" name="divide" value="/">
     </div>
 </form>
 </body>

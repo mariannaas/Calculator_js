@@ -4,9 +4,10 @@ class Calculator {
         this.addElement = document.getElementsByName('add')[0];
         this.subtractElement = document.getElementsByName('subtract')[0];
         this.multiplyElement = document.getElementsByName('multiply')[0];
+        this.divideElement = document.getElementsByName('divide')[0];
         this.equalElement = document.getElementsByName('calculate')[0];
         this.displayInput = document.getElementById("display");
-
+        this.digitValueElements = document.getElementsByClassName('digit');
         this.initialize();
     }
 
@@ -17,8 +18,8 @@ class Calculator {
             return 0;
         }
     }
-    setDisplayValue(value){
-        this.displayInput.value = value;
+    setDigitIntoDisplay(value){
+        this.displayInput.value += value;
     }
 
     initialize() {
@@ -35,6 +36,16 @@ class Calculator {
         this.multiplyElement.addEventListener('click', (event) => {
             this.multiply();
         });
+        this.divideElement.addEventListener('click', (event) => {
+            this.divide();
+        });
+        for(let i = 0; i < this.digitValueElements.length; i++) {
+            this.digitValueElements[i].addEventListener('click', (event) => {
+                console.log("Clicked index: " + i);
+                this.setDigitIntoDisplay(this.digitValueElements[i].value);
+            })
+        }
+
     }
 
     add() {
@@ -49,6 +60,10 @@ class Calculator {
 
     multiply() {
         this.result *= this.displayValue;
+        this.clearResult();
+    }
+    divide() {
+        this.result /= this.displayValue;
         this.clearResult();
     }
     equation() {
