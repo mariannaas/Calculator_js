@@ -1,4 +1,5 @@
 class Calculator {
+
     constructor() {
         this.result = 0;
         this.addElement = document.getElementsByName('add')[0];
@@ -8,6 +9,7 @@ class Calculator {
         this.equalElement = document.getElementsByName('calculate')[0];
         this.displayInput = document.getElementById("display");
         this.digitValueElements = document.getElementsByClassName('digit');
+        this.isOperatorClicked = false;
         this.initialize();
     }
 
@@ -18,11 +20,22 @@ class Calculator {
             return 0;
         }
     }
-    setDigitIntoDisplay(value){
-        this.displayInput.value += value;
+    setDigitIntoDisplay(num){
+        if ((this.displayInput.value === "") && num === "0") {
+            return;
+        }
+        else if (this.isOperatorClicked === true) {
+            this.displayInput.value = num;
+            this.isOperatorClicked = false;
+        }
+        else {
+            this.displayInput.value += num;
+        }
     }
 
     initialize() {
+
+
         this.addElement.addEventListener('click', (event) => {
             this.add();
         });
@@ -68,9 +81,10 @@ class Calculator {
     }
     equation() {
         this.displayInput.value = this.result;
-    }
+     }
 
     clearResult() {
+        this.isOperatorClicked = true;
         this.displayInput.value = '';
     }
 
