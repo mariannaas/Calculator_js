@@ -2,8 +2,8 @@ class Calculator {
     constructor() {
         this.result = 0;
         this.addElement = document.getElementsByName('add')[0];
-        this.addElement = document.getElementsByName('subtract')[0];
-        this.addElement = document.getElementsByName('multiply')[0];
+        this.subtractElement = document.getElementsByName('subtract')[0];
+        this.multiplyElement = document.getElementsByName('multiply')[0];
         this.equalElement = document.getElementsByName('calculate')[0];
         this.displayInput = document.getElementById("display");
 
@@ -17,6 +17,9 @@ class Calculator {
             return 0;
         }
     }
+    setDisplayValue(value){
+        this.displayInput.value = value;
+    }
 
     initialize() {
         this.addElement.addEventListener('click', (event) => {
@@ -26,10 +29,10 @@ class Calculator {
         this.equalElement.addEventListener('click', (event) => {
             this.equation();
         });
-        this.equalElement.addEventListener('click', (event) => {
+        this.subtractElement.addEventListener('click', (event) => {
             this.subtract();
         });
-        this.equalElement.addEventListener('click', (event) => {
+        this.multiplyElement.addEventListener('click', (event) => {
             this.multiply();
         });
     }
