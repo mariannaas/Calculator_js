@@ -55,7 +55,7 @@ class Calculator {
                 this.setDigitIntoDisplay(this.digitValueElements[i].value);
             });
         }
-        
+
         this.clearElement.addEventListener('click', (event) => {
             this.clearAll();
         });
@@ -90,6 +90,7 @@ class Calculator {
         }
         this.displayInput.value = this.result;
         this.isOperatorClicked = false;
+        this.clearCalculationResults();
     }
 
     clearTextInput() {
@@ -99,8 +100,17 @@ class Calculator {
 
     clearAll() {
         this.clearTextInput();
+        this.clearCalculationResults();
+
+
+    }
+
+    clearCalculationResults() {
         this.result = 0;
         this.numberToCalculate = 0;
+        this.storedNumber = 0;
+        this.storedOperator = '';
+        this.isFinished = false;
     }
 }
 
