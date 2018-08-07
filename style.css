@@ -37,6 +37,7 @@ html {
 .calcForm .calcRow input[type=button] {
 	background-color: rgba(10, 24, 9, 0.38);
 	border: 1px solid #060d23;
+	border-radius: 8px;
 	color: white;
 	padding: 15px 32px;
 	text-align: center;
@@ -58,6 +59,5 @@ html {
 	height: 50px;
 	width: 291px;
 	border: 1px solid #060d23;
+	border-radius: 8px;
 }
-
-
