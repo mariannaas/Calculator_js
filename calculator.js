@@ -32,6 +32,7 @@ class Calculator {
         else {
             this.displayInput.value += num;
         }
+
     }
 
     initialize() {
@@ -76,17 +77,16 @@ class Calculator {
                 case '-':
                     this.result = this.storedNumber - this.numberToCalculate;
                     break;
-                case'*':
+                case '*':
                     this.result = this.storedNumber * this.numberToCalculate;
                     break;
-                case'/':
+                case '/':
                     this.result = this.storedNumber / this.numberToCalculate;
                     break;
                 default:
                     this.result = this.storedNumber;
                     break;
             }
-
         }
         this.displayInput.value = this.result;
         this.isOperatorClicked = false;
