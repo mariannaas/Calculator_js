@@ -11,9 +11,9 @@ class Calculator {
         this.digitValueElements = document.getElementsByClassName('digit');
         this.clearElement = document.getElementById("clear");
         this.isOperatorClicked = false;
-        this.isStoredNumber = false;
+        this.isFinished = false;
         this.numberToCalculate = 0;
-        this.storedNumber = 0;
+        this.storedOperator = '';
         this.initialize();
     }
 
@@ -29,40 +29,48 @@ class Calculator {
         if ((this.displayInput.value === '') && num === '0') {
             return;
         }
-        else if (this.isStoredNumber && this.storedNumber !== 0) {
+        else if (this.isOperatorClicked === true) {
             this.displayInput.value = num;
-            this.numberToCalculate = parseInt(num);
-        }
-        else if (this.isOperatorClicked && this.storedNumber === 0) {
-            this.displayInput.value = num;
-            this.storedNumber = parseInt(num);
-            this.isStoredNumber = true;
-            this.isOperatorClicked = false;
         }
         else {
             this.displayInput.value += num;
         }
+
     }
 
 
     initialize() {
 
         this.addElement.addEventListener('click', (event) => {
-            this.add();
+            this.isOperatorClicked = true;
+            this.storedOperator = this.addElement.value;
+            this.storedNumber = this.displayValue;
+            this.clearTextInput();
         });
-
         this.equalElement.addEventListener('click', (event) => {
-            this.equation();
+            this.isFinished = true;
+            this.numberToCalculate = this.displayValue;
+            this.calculate();
         });
         this.subtractElement.addEventListener('click', (event) => {
-            this.subtract();
+            this.isOperatorClicked = true;
+            this.storedOperator = this.subtractElement.value;
+            this.storedNumber = this.displayValue;
+            this.clearTextInput();
         });
         this.multiplyElement.addEventListener('click', (event) => {
-            this.multiply();
+            this.isOperatorClicked = true;
+            this.storedOperator = this.multiplyElement.value;
+            this.storedNumber = this.displayValue;
+            this.clearTextInput();
         });
         this.divideElement.addEventListener('click', (event) => {
-            this.divide();
+            this.isOperatorClicked = true;
+            this.storedOperator = this.divideElement.value;
+            this.storedNumber = this.displayValue;
+            this.clearTextInput();
         });
+                
         for (let i = 0; i < this.digitValueElements.length; i++) {
             this.digitValueElements[i].addEventListener('click', (event) => {
                 console.log("Clicked index: " + i);
@@ -75,9 +83,34 @@ class Calculator {
 
     }
 
+    calculate() {
+
+        if (this.isFinished && this.storedOperator !== '') {
+            switch (this.storedOperator) {
+                case '+':
+                    this.result = this.storedNumber + this.numberToCalculate;
+                    break;
+                case '-':
+                    this.result = this.storedNumber - this.numberToCalculate;
+                    break;
+                case'*':
+                    this.result = this.storedNumber * this.numberToCalculate;
+                    break;
+                case'/':
+                    this.result = this.storedNumber / this.numberToCalculate;
+                    break;
+                default:
+                    this.result = this.storedNumber;
+                    break;
+            }
+
+        }
+        this.displayInput.value = this.result;
+        this.isOperatorClicked = false;
+    }
+
     add() {
         this.result = this.storedNumber + this.numberToCalculate;
-        console.log('Stored number: ' + this.storedNumber + ' \n' + 'Number to claculate: ' + this.numberToCalculate);
         this.clearTextInput();
     }
 
@@ -97,6 +130,7 @@ class Calculator {
     }
 
     equation() {
+        this.calculate();
         this.displayInput.value = this.result;
         this.storedNumber = 0;
         this.numberToCalculate = 0;
@@ -104,8 +138,8 @@ class Calculator {
     }
 
     clearTextInput() {
-        this.isOperatorClicked = true;
-        this.displayInput.value = ''
+        this.displayInput.value = '';
+        this.isOperatorClicked = false;
     }
 
     clearAll() {
