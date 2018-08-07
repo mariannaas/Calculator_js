@@ -32,7 +32,6 @@ class Calculator {
         else {
             this.displayInput.value += num;
         }
-
     }
 
     initialize() {
@@ -55,10 +54,10 @@ class Calculator {
                 this.setDigitIntoDisplay(this.digitValueElements[i].value);
             });
         }
+        
         this.clearElement.addEventListener('click', (event) => {
             this.clearAll();
         });
-
     }
 
     setOperatorForCalculation(operatorValue) {
