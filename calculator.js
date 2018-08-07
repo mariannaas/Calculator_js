@@ -31,11 +31,11 @@ class Calculator {
         }
         else if (this.isStoredNumber && this.storedNumber !== 0) {
             this.displayInput.value = num;
-            this.numberToCalculate = this.displayValue;
+            this.numberToCalculate = parseInt(num);
         }
         else if (this.isOperatorClicked && this.storedNumber === 0) {
             this.displayInput.value = num;
-            this.storedNumber = this.displayValue;
+            this.storedNumber = parseInt(num);
             this.isStoredNumber = true;
             this.isOperatorClicked = false;
         }
@@ -76,9 +76,7 @@ class Calculator {
     }
 
     add() {
-        if (this.isStoredNumber) {
-            this.result = this.storedNumber + this.numberToCalculate;
-        }
+        this.result = this.storedNumber + this.numberToCalculate;
         console.log('Stored number: ' + this.storedNumber + ' \n' + 'Number to claculate: ' + this.numberToCalculate);
         this.clearTextInput();
     }
