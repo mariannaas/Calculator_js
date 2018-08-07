@@ -11,7 +11,9 @@ class Calculator {
         this.digitValueElements = document.getElementsByClassName('digit');
         this.clearElement = document.getElementById("clear");
         this.isOperatorClicked = false;
+        this.isStoredNumber = false;
         this.numberToCalculate = 0;
+        this.storedNumber = 0;
         this.initialize();
     }
 
@@ -27,10 +29,15 @@ class Calculator {
         if ((this.displayInput.value === '') && num === '0') {
             return;
         }
-        else if (this.isOperatorClicked) {
+        else if (this.isStoredNumber && this.storedNumber !== 0) {
             this.displayInput.value = num;
-            this.isOperatorClicked = false;
             this.numberToCalculate = this.displayValue;
+        }
+        else if (this.isOperatorClicked && this.storedNumber === 0) {
+            this.displayInput.value = num;
+            this.storedNumber = this.displayValue;
+            this.isStoredNumber = true;
+            this.isOperatorClicked = false;
         }
         else {
             this.displayInput.value += num;
@@ -69,36 +76,42 @@ class Calculator {
     }
 
     add() {
-        this.result += this.numberToCalculate;
-        this.clearResult();
+        if (this.isStoredNumber) {
+            this.result = this.storedNumber + this.numberToCalculate;
+        }
+        console.log('Stored number: ' + this.storedNumber + ' \n' + 'Number to claculate: ' + this.numberToCalculate);
+        this.clearTextInput();
     }
 
     subtract() {
-        this.result -= this.numberToCalculate;
-        this.clearResult();
+        this.result = this.storedNumber - this.numberToCalculate;
+        this.clearTextInput();
     }
 
     multiply() {
-        this.result *= this.numberToCalculate;
-        this.clearResult();
+        this.result = this.storedNumber * this.numberToCalculate;
+        this.clearTextInput();
     }
 
     divide() {
-        this.result /= this.numberToCalculate;
-        this.clearResult();
+        this.result = this.storedNumber / this.numberToCalculate;
+        this.clearTextInput();
     }
 
     equation() {
         this.displayInput.value = this.result;
+        this.storedNumber = 0;
+        this.numberToCalculate = 0;
+        this.isOperatorClicked = false;
     }
 
-    clearResult() {
+    clearTextInput() {
         this.isOperatorClicked = true;
         this.displayInput.value = ''
     }
 
     clearAll() {
-        this.clearResult();
+        this.clearTextInput();
         this.result = 0;
         this.numberToCalculate = 0;
     }
